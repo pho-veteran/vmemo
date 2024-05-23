@@ -26,32 +26,9 @@ const server = new ApolloServer({
 
 await server.start();
 
-app.use(cors(), bodyParser.json(), expressMiddleware(server));
-
-// const client = new MongoClient(URI, {
-//     serverApi: {
-//       version: ServerApiVersion.v1,
-//       strict: true,
-//       deprecationErrors: true,
-//     }
-// });
-// async function connectToMongoDB() {
-//     try {
-//         await client.connect();
-//         await client.db("admin").command({ ping: 1 });
-//         console.log(
-//             "Pinged your deployment. You successfully connected to MongoDB!"
-//         );
-//         await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-//         console.log(`🚀 Server ready at http://localhost:${PORT}`);
-//     } catch (e) {
-//         console.error("MongoDB connection error:", e);
-//     } finally {
-//         await client.close();
-//     }
-// }
-
-// connectToMongoDB().catch(console.error);
+app.use(cors(), bodyParser.json({limit: '50mb'}),expressMiddleware(server));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 mongoose.connect(URI)
 .then(async () => {
@@ -61,40 +38,3 @@ mongoose.connect(URI)
 }).catch((error) => {
     console.error("MongoDB connection error:", error);
 });
-
-// Get all notebooks
-// fetch('http://localhost:4000', {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//     },
-//     body: JSON.stringify({ query: "{ notebooks { id name createdAt} }" })
-// }).then(response => response.json()).then(data => console.log(data));
-
-// Get a single notebook
-// const query = `
-//     query notebook($id: String) {
-//         notebook(id: $id) {
-//             id
-//             name
-//             createdAt
-//         }
-//     }
-// `
-// const variables = {
-//     id: "1"
-// };
-// fetch('http://localhost:4000', {
-//         method: 'POST',
-//         headers: {
-//             "Accept": "application/json",
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//             query,
-//             variables,
-//         }),
-//     })
-//     .then(response => response.json())
-//     .then(data => console.log(data));
