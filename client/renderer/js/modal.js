@@ -256,7 +256,7 @@ const loginModal = () => {
             if (validateUsername(username)) {
                 usernameError.textContent = "";
             } else {
-                usernameError.textContent = "Username must be between 3 and 16 characters long";
+                usernameError.textContent = "Username must be between 3 and 20 characters long";
                 valid = false;
             }
         }
@@ -377,7 +377,7 @@ const registerModal = () => {
             if (validateUsername(username)) {
                 usernameError.textContent = "";
             } else {
-                usernameError.textContent = "Username must be between 3 and 16 characters long";
+                usernameError.textContent = "Username must be between 3 and 20 characters long";
                 valid = false;
             }
         }

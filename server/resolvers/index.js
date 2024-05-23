@@ -64,8 +64,16 @@ export const resolvers = {
                 password: args.password,
                 email: args.email,
             });
-            await newAccount.save();
-            return newAccount;
+            //check username is existed, if not then save
+            const checkAccount = await accountModel.findOne({
+                username: args.username
+            });
+            if (checkAccount) {
+                return null;
+            } else {
+                await newAccount.save();
+                return newAccount;
+            }
         },
         createNotebook: async (parent, args) => {
             const newNotebook = new notebookModel({
