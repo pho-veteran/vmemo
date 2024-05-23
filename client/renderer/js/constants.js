@@ -1,0 +1,1 @@
+export const GRAPHQL_SERVER = "https://vmemo-server.onrender.com/graphql";

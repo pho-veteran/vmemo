@@ -1,0 +1,22 @@
+{
+  "name": "electron-note-app",
+  "productName": "VMemo",
+  "version": "1.0.0",
+  "description": "Note app using ElectronJS for learning purpose",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Nguyễn Thành Vinh",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.2",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.vinh.vmemo",
+    "icon": "./favicon.png"
+  }
+}

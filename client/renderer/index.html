@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>VMemo</title>
+        <!-- Embeded Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
+        <!-- Font Awesome -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <section class="sidebar">
+                    <div class="sidebar-header-row">
+                        <div class="logo-wrapper">
+                            <img
+                                src="./assets/imgs/logo/logo.svg"
+                                alt="VMemo"
+                                class="logo-img"
+                            />
+                            <span class="logo-text">VMemo</span>
+                        </div>
+                        <div class="icon-button" id="sidebar-close">
+                            <i class="fa-solid fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="account-wrapper">
+                        <div class="account-icon-wrapper">
+                            <i class="fa-solid fa-user account-icon"></i>
+                        </div>
+                        <div class="account-info">
+                            <h4 class="account-info__name"></h4>
+                            <p class="account-info__email"></p>
+                        </div>
+                    </div>
+                    <div class="btn" id="add-notebook">
+                        <i class="fa-solid fa-plus btn__icon"></i>
+                        <span class="btn__text">New Notebook</span>
+                    </div>
+                    <div class="notebooks-list-wrapper">
+                        <h3 class="notebooks-list__title">Your Notebooks</h3>
+                        <ul id="notebooks-list"></ul>
+                    </div>
+                    <div class="account-action" id="account-action">
+                        <div class="account-icon-wrapper">
+                            <i
+                                class="fa-solid fa-right-to-bracket account-icon"
+                            ></i>
+                        </div>
+                        <div class="account-action__content">
+                            <h4 class="account-action__title">
+                                Sign in to keep your note
+                            </h4>
+                        </div>
+                    </div>
+                </section>
+            </nav>
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        </header>
+        <main class="main">
+            <div class="header">
+                <div class="container header-container">
+                    <section class="greeting">
+                        <div class="greeting__title"></div>
+                        <p class="dateTime" id="date"></p>
+                    </section>
+                    <div class="icon-btn-wrapper">
+                        <div
+                            class="icon-button header__btn"
+                            id="sidebar-toggler"
+                        >
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div id="settings-wrapper">
+                            <div
+                                class="icon-button header__btn"
+                                id="settings-btn"
+                            >
+                                <i class="fa-solid fa-cog"></i>
+                            </div>
+                            <div class="settings-body" id="settings-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="main-content">
+                <div class="empty-tooltip empty-tooltip--active">
+                    <div class="empty-tooltip__icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <h2 class="empty-tooltip__title">No Notebook</h2>
+                </div>
+                <div class="notes-list-wrapper">
+                    <div class="notebook-title-wrapper">
+                        <i class="fa-solid fa-book notebook-icon"></i>
+                        <h2
+                            class="notebook-title title-clamp"
+                            id="notebook-title--panel"
+                        ></h2>
+                        <i
+                            class="fa-solid fa-chevron-right decoration-arrow"
+                        ></i>
+                    </div>
+                    <ul id="notes-list">
+                        <li id="add-note" class="note-item add-note-item">
+                            <div class="icon-wrapper">
+                                <i class="fa-solid fa-plus add-note__icon"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-overlay"></div>
+        </main>
+    </body>
+    <!-- JS -->
+    <script type="module" src="./js/app.js"></script>
+</html>
