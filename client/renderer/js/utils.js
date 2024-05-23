@@ -58,7 +58,7 @@ const validateFormInput = (input, regex) => {
     return regex.test(input);
 }
 const validateUsername = (username) => {
-    const usernameRegex = /^[a-z0-9_-]{3,16}$/;
+    const usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
     return validateFormInput(username, usernameRegex);
 }
 const validateEmail = (email) => {
