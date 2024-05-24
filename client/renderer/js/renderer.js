@@ -10,7 +10,7 @@ export const renderer = {
         ifNotebookListEmpty() {
             const notebooksListElement = $("#notebooks-list");
             const notesListWrapperElement = $(".notes-list-wrapper");
-            const emptyNotebookMessageElement = document.querySelector(".empty-tooltip");
+            const emptyNotebookMessageElement = $(".empty-tooltip");
             if (notebooksListElement.children.length === 0) {           
                 notesListWrapperElement.style.display = "none";
                 emptyNotebookMessageElement.classList.add("empty-tooltip--active");
@@ -42,7 +42,7 @@ export const renderer = {
         },
         updateNotebook(notebookId, notebookTitle) {
             const notebooksListElement = $("#notebooks-list");
-            let oldNotebookElement = document.querySelector(
+            let oldNotebookElement = $(
                 `.notebook-item[notebook-id="${notebookId}"]`
             );
             let newNotebookElement = navItem(notebookTitle, notebookId);
@@ -53,7 +53,7 @@ export const renderer = {
             activeNotebook(newNotebookElement);
         },
         deleteNotebook(notebookId) {
-            const notebookElement = document.querySelector(
+            const notebookElement = $(
                 `.notebook-item[notebook-id="${notebookId}"]`
             );
             if (notebookElement.classList.contains("notebook-item--active")) {
@@ -70,7 +70,6 @@ export const renderer = {
         addNote(noteData) {
             const notesListElement = $("#notes-list");
             let noteElement = noteCard(noteData);
-            //append noteelement after add-note card
             notesListElement.insertBefore(noteElement, notesListElement.children[1]);
         },
         renderExistedNotes(notes) {
@@ -83,14 +82,14 @@ export const renderer = {
             });
         },
         updateNote(noteId, updatedData) {
-            const noteElement = document.querySelector(
+            const noteElement = $(
                 `.note-item[note-id="${noteId}"]`
             );
             let updatedNoteElement = noteCard(updatedData);
             noteElement.replaceWith(updatedNoteElement);
         },
         deleteNote(noteId) {
-            const noteElement = document.querySelector(
+            const noteElement = $(
                 `.note-item[note-id="${noteId}"]`
             );
             noteElement.remove();

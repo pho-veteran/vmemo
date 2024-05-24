@@ -9,7 +9,7 @@ import {
 import { renderer } from "./renderer.js";
 import { db } from "./db.js";
 import { getAccountInLocalStorage, logout } from "./account.js";
-import { loginModal, notebookModalEditor, registerModal } from "./modal.js";
+import { loginModal, notebookModalEditor, registerModal, updateAccountInfoModal, updatePasswordModal } from "./modal.js";
 import { spinner } from "./spinner.js";
 
 const accountActionButton = $("#account-action");
@@ -79,13 +79,29 @@ if (getAccountInLocalStorage()) {
     settingBodyElement.innerHTML = `
     <ul class="settings-list">
         <li class="settings-list__header" account-settings>Account Setting</li>
-        <li class="settings-list__item" id="settings__change-info" style="color: #ccc" account-settings>Change Infomation</li>
+        <li class="settings-list__item" id="settings__change-info" account-settings>Change Infomation</li>
+        <li class="settings-list__item" id="settings__change-password" account-settings>Change Password</li>
         <li class="settings-list__item" id="settings__log-out" account-settings>Log out</li>
     </ul>
     `
+    const changeInfoButton = $("#settings__change-info");
+    changeInfoButton.addEventListener("click", async () => {
+        const spinnerElement = spinner();
+        spinnerElement.start();
+        const account = await db.get.account();
+        spinnerElement.stop();
+        updateAccountInfoModal(account.username, account.email);
+        settingBodyElement.classList.toggle("settings-body--active");
+    });
+    const changePasswordButton = $("#settings__change-password");
+    changePasswordButton.addEventListener("click", () => {
+        updatePasswordModal();
+        settingBodyElement.classList.toggle("settings-body--active");
+    });
     const logOutButton = $("#settings__log-out");
     logOutButton.addEventListener("click", () => {
         logout();
+        settingBodyElement.classList.toggle("settings-body--active");
     });
 } else {
     settingBodyElement.innerHTML = `
@@ -98,10 +114,12 @@ if (getAccountInLocalStorage()) {
     const logInButton = $("#settings__log-in");
     logInButton.addEventListener("click", () => {
         loginModal();
+        settingBodyElement.classList.toggle("settings-body--active");
     });
     const registerButton = $("#settings__register");
     registerButton.addEventListener("click", () => {
         registerModal();
+        settingBodyElement.classList.toggle("settings-body--active");
     });
 }
 // CRUD operations, save to localStorage first, handle server later

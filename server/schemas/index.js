@@ -32,6 +32,8 @@ type Query {
 }
 type Mutation {
     createAccount(username: String!, password: String!, email: String!): Account,
+    updateAccountInfo(accountID: String!, username: String!, email: String!): Boolean,
+    updateAccountPassword(accountID: String!, oldPassword: String!, newPassword: String!): Boolean,
     createNotebook(title: String!, accountID: String!): Notebook,
     updateNotebook(id: String!, title: String!): Notebook,
     deleteNotebook(id: String!): Notebook,

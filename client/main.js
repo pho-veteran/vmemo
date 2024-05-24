@@ -6,7 +6,7 @@ function createWindow() {
     icon: './favicon.png',
     autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
     },
   });
   win.loadFile('./renderer/index.html');

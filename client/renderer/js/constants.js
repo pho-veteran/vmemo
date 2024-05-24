@@ -1,1 +1,1 @@
-export const GRAPHQL_SERVER = "https://vmemo-server.onrender.com/graphql";
+export const GRAPHQL_SERVER = "http://localhost:4000/graphql";

@@ -64,7 +64,6 @@ export const resolvers = {
                 password: args.password,
                 email: args.email,
             });
-            //check username is existed, if not then save
             const checkAccount = await accountModel.findOne({
                 username: args.username
             });
@@ -73,6 +72,37 @@ export const resolvers = {
             } else {
                 await newAccount.save();
                 return newAccount;
+            }
+        },
+        updateAccountInfo: async (parent, args) => {
+            const checkUsername = await accountModel.findOne({
+                username: args.username
+            });
+            if (checkUsername && checkUsername.id !== args.accountID) {
+                return false;
+            } else {
+                await accountModel.findByIdAndUpdate(
+                    args.accountID,
+                    { username: args.username, email: args.email },
+                    { new: true }
+                );
+                return true;
+            }
+        },
+        updateAccountPassword: async (parent, args) => {
+            const checkAccount = await accountModel.findOne({
+                _id: args.accountID,
+                password: args.oldPassword
+            });
+            if (checkAccount) {
+                await accountModel.findByIdAndUpdate(
+                    args.accountID,
+                    { password: args.newPassword },
+                    { new: true }
+                );
+                return true;
+            } else {
+                return false;
             }
         },
         createNotebook: async (parent, args) => {

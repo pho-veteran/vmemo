@@ -24,12 +24,10 @@ body {
   left: 50%;
   z-index: 1000;
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
 .spinner.hidden {
   display: none;
 }
@@ -182,8 +180,8 @@ strong {
 .logo-text {
   margin-left: 8px;
   margin-top: 2px;
-  font-family: "Reddit Mono", serif;
-  font-weight: 700;
+  font-family: "Lato", serif;
+  font-weight: 800;
   letter-spacing: 1px;
   color: var(--color-black);
 }
@@ -460,7 +458,7 @@ strong {
 }
 .notebook-title-wrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
 }
 .notebook-icon {
@@ -471,6 +469,7 @@ strong {
   font-weight: 500;
   color: var(--color-black);
   align-self: flex-start;
+  line-height: 1.6;
 }
 .decoration-arrow {
   font-size: 1rem;
@@ -709,6 +708,13 @@ strong {
 }
 .modal-account .modal-body {
   margin-top: 20px;
+}
+.modal-account-update .modal-title {
+  text-align: center;
+  font-weight: 600;
+}
+.modal-account-update .modal-body {
+  margin-top: 16px;
 }
 .form-wrapper {
   display: flex;
