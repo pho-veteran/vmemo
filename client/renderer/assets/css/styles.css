@@ -1,14 +1,102 @@
 * {
   box-sizing: border-box;
 }
+:root {
+  /* Light Theme */
+  --body-color-light: #ffffff;
+  --color-default-light: #000000da;
+  --navbar-bgc-light: #fff2ed;
+  --color-highlight-light: #371707;
+  --highlight-bgc-light: #FFDDCC;
+  --highlight-bgc-lighter-light: #FFDDCC;
+  --highlight-btn-light: #69473A;
+  --hover-bgc-light: #00000046;
+  --note-bgc-light: #FFF8F5;
+  --note-hover-bgc-light: #f6dad072;
+  --note-border-light: #85736B;
+  --modal-bgc-light: #EDDFD9;
+  --modal-btn-light: #69473A;
+  --color-gray-light: #666666;
+  --box-shadow-1-light: #0000000c;
+  --box-shadow-2-light: #0000000b;
+  --setting-bgc-light: #ffffff;
+
+  /* Dark Theme */
+  --navbar-bgc-dark: #201A18;
+  --body-color-dark: #201a18ab;
+  --color-highlight-dark: #FFDDCC;
+  --highlight-bgc-dark: #783100;
+  --highlight-bgc-lighter-dark: #5C4032;
+  --highlight-btn-dark: #FFDDCC;
+  --hover-bgc-dark: #aeaeae70;
+  --note-bgc-dark: #181110;
+  --note-border-dark: #342D2A;
+  --note-hover-bgc-dark: transparent;
+  --modal-bgc-dark: #3A3330;
+  --modal-btn-dark: #69473A;
+  --color-gray-dark: #ffffff;
+  --box-shadow-1-dark: #0000000c;
+  --box-shadow-2-dark: #0000000b;
+  --setting-bgc-dark: #201A18;
+
+  /* Common */
+  --content-padding: 48px;
+  --sidebar-width: 360px;
+}
+[data-theme="light"] {
+  color-scheme: light;
+
+  --body-color: var(--body-color-light);
+  --color-default: var(--color-default-light);
+  --navbar-bgc: var(--navbar-bgc-light);
+  --color-highlight: var(--color-highlight-light);
+  --highlight-bgc: var(--highlight-bgc-light);
+  --highlight-bgc-lighter: var(--highlight-bgc-lighter-light);
+  --highlight-btn: var(--highlight-btn-light);
+  --hover-bgc: var(--hover-bgc-light);
+  --note-bgc: var(--note-bgc-light);
+  --note-hover-bgc: var(--note-hover-bgc-light);
+  --note-border: var(--note-border-light);
+  --modal-bgc: var(--modal-bgc-light);
+  --modal-btn: var(--modal-btn-light);
+  --color-gray: var(--color-gray-light);
+  --box-shadow-1: var(--box-shadow-1-light);
+  --box-shadow-2: var(--box-shadow-2-light);
+  --hover-bgc: var(--hover-bgc-light);
+  --setting-bgc: var(--setting-bgc-light);
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --body-color: var(--body-color-dark);
+  --color-default: var(--color-default-dark);
+  --navbar-bgc: var(--navbar-bgc-dark);
+  --color-highlight: var(--color-highlight-dark);
+  --highlight-bgc: var(--highlight-bgc-dark);
+  --highlight-bgc-lighter: var(--highlight-bgc-lighter-dark);
+  --highlight-btn: var(--highlight-btn-dark);
+  --hover-bgc: var(--hover-bgc-dark);
+  --note-bgc: var(--note-bgc-dark);
+  --note-hover-bgc: var(--note-hover-bgc-dark);
+  --note-border: var(--note-border-dark);
+  --modal-bgc: var(--modal-bgc-dark);
+  --modal-btn: var(--modal-btn-dark);
+  --color-gray: var(--color-gray-dark);
+  --box-shadow-1: var(--box-shadow-1-dark);
+  --box-shadow-2: var(--box-shadow-2-dark);
+  --hover-bgc: var(--hover-bgc-dark);
+  --setting-bgc: var(--setting-bgc-dark);
+}
 html {
   font-size: 62.5%;
+  background-color: color(--body-color-light);
 }
 body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
   position: relative;
   padding-bottom: 20px;
+  background-color: var(--body-color);
 }
 .spinner {
   border: 4px solid rgb(255, 255, 255);
@@ -31,23 +119,12 @@ body {
 .spinner.hidden {
   display: none;
 }
-:root {
-  --navbar-bgc: hwb(17 93% 0%);
-  --color-black: rgba(0, 0, 0, 0.854);
-  --color-highlight: #371707;
-  --highlight-bgc: #FFDDCC;
-  --highlight-btn: #69473A;
-  --hover-bgc: rgb(0, 0, 0 , 0.1);
-  --note-bgc: #FFF8F5;
-  --note-hover-bgc: #f6dad072;
-  --note-border: #85736B;
-  --modal-bgc: #EDDFD9;
-  --color-gray: #666;
 
-  --content-padding: 48px;
-  --sidebar-width: 360px;
-}
 /* Common Components*/
+::selection {
+  background-color: #974406;
+  color: #fff;
+}
 ::-webkit-scrollbar {
   width: 8px; 
 }
@@ -105,7 +182,7 @@ strong {
   }
   #sidebar-close {
     visibility: visible;
-    color: var(--color-black);
+    color: var(--color-default);
   }
 }
 @media screen and (min-width: 992px) {
@@ -183,7 +260,7 @@ strong {
   font-family: "Lato", serif;
   font-weight: 800;
   letter-spacing: 1px;
-  color: var(--color-black);
+  color: var(--color-default);
 }
 
 .account-wrapper {
@@ -203,14 +280,14 @@ strong {
 .account-icon {
   font-size: 2.3rem;
   border-radius: 50%;
-  color: var(--color-black)
+  color: var(--color-default)
 }
 .account-info {
   margin-left: 8px;
 }
 .account-info__name {
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-default);
   font-size: 1.7rem;
   line-height: 1.7;
   max-width: calc(360px - 100px);
@@ -224,7 +301,6 @@ strong {
 
 .btn {
   margin-top: 16px;
-  /* Reset button css */
   display: inline-flex;
   border: none;
   outline: none;
@@ -248,7 +324,7 @@ strong {
   color: var(--color-highlight);
 }
 .btn:hover {
-  background-color: #f7cfc1d7;
+  background-color: var(--hover-bgc)
 }
 
 
@@ -257,7 +333,7 @@ strong {
 }
 .notebooks-list__title {
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-default);
   margin-bottom: 16px;
   margin-left: 8px;
 }
@@ -311,7 +387,7 @@ strong {
   outline: none;
 }
 .notebook-item--active {
-  background-color: var(--highlight-bgc);
+  background-color: var(--highlight-bgc-lighter);
   color: var(--color-highlight);
   font-weight: 500;
 }
@@ -329,8 +405,8 @@ strong {
   align-items: center;
   gap: 8px;
   padding: 0 16px;
-  background-color: #ffffffd3;
-  border: 1px solid var(--color-gray);
+  background-color: var(--note-bgc);
+  border: 1px solid var(--note-border);
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.5s ease;
@@ -338,7 +414,7 @@ strong {
   margin-top: 16px;
 }
 .account-action:hover {
-  background-color: #f7f7f7;
+  background-color: var(--note-hover-bgc);
 }
 .account-action .account-icon {
   color: var(--color-highlight);
@@ -362,7 +438,7 @@ strong {
   align-items: center;
   height: calc(100vh - 68px);
   font-size: 2rem;
-  color: var(--color-black);
+  color: var(--color-default);
   gap: 10px;
   display: none;
 }
@@ -380,11 +456,11 @@ strong {
 }
 /* Header */
 .header {
-  background-color: #fff;
+  background-color: var(--body-color);
   position: sticky;
   top: 0;
   padding: 24px 0;
-  box-shadow: 0px 1px 3px 0px #0000000c, 0px 4px 8px 3px #0000000b;
+  box-shadow: 0px 1px 3px 0px var(--box-shadow-1), 0px 4px 8px 3px var(--box-shadow-2);
   z-index: 2;
 }
 .header-container {
@@ -401,11 +477,11 @@ strong {
 }
 .dateTime {
   font-size: 1.4rem;
-  color: var(--color-black);
+  color: var(--color-default);
   margin-top: 12px;
 }
 .header__btn {
-  color: var(--color-black);
+  color: var(--color-default);
   font-size: 1.6rem;
 }
 
@@ -419,7 +495,7 @@ strong {
   min-width: 160px;
   border-radius: 3px;
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
-  background: #fff;
+  background: var(--setting-bgc);
 
   transform-origin: 93% top;
   scale: 0;
@@ -434,7 +510,7 @@ strong {
 .settings-list__header {
   padding: 12px 10px;
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-default);
 }
 .settings-list__item {
   padding: 12px 12px;
@@ -463,17 +539,17 @@ strong {
 }
 .notebook-icon {
   font-size: 1.8rem;
-  color: var(--color-black);
+  color: var(--color-default);
 }
 .notes-list-wrapper .notebook-title {
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-default);
   align-self: flex-start;
   line-height: 1.6;
 }
 .decoration-arrow {
   font-size: 1rem;
-  color: var(--color-black);
+  color: var(--color-default);
   align-self: center;
 }
 
@@ -529,7 +605,7 @@ strong {
 }
 
 .note-content {
-  color: var(--color-black);
+  color: var(--color-default);
   line-height: 1.3;
   --clamp: 8;
 }
@@ -588,13 +664,17 @@ strong {
 .modal-overlay--active {
   visibility: visible;
 }
+.modal-overlay--transparent {
+  background-color: transparent;
+  visibility: visible;
+}
 .modal-header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
 }
 .modal-title {
-  color: var(--color-black);
+  color: var(--color-default);
   font-size: 1.8rem;
   font-weight: 500;
   width: 100%;
@@ -607,10 +687,6 @@ strong {
 }
 .modal-input:focus {
   outline: none;
-}
-.modal-input::selection {
-  background-color: #974406;
-  color: #fff;
 }
 .modal-notebook-input {
   width: 100%;
@@ -635,10 +711,6 @@ strong {
   line-height: 1.6;
   font-size: 1.4rem;
 }
-.modal-text-area::selection {
-  background-color: #974406;
-  color: #fff;
-}
 .modal-text-area:focus {
   outline: none;
 }
@@ -648,7 +720,7 @@ strong {
   align-items: center;
 }
 .note-date--modal {
-  color: var(--color-black);
+  color: var(--color-default);
 }
 .modal-btn-wrapper {
   display: flex;
@@ -658,22 +730,21 @@ strong {
 .modal-btn {
   padding: 10px 12px;
   cursor: pointer;
-  background-color: var(--highlight-btn);
+  background-color: var(--modal-btn);
   border-radius: 12px;
   color: #fff;
   font-weight: 400;
-  transition: ease opacity 0.5s;
+  transition: ease all 0.5s;
 }
 .modal-btn__icon {
   color: #fff;
   margin-right: 4px;
 }
 .modal-btn:hover {
-  background-color: var(--highlight-btn);
-  opacity: 0.8;
+  background-color: var(--hover-bgc);
 }
 .modal-dialog__body {
-  color: #383838;
+  color: color(--color-gray);
 }
 .modal-dialog__title {
   display: inline-block;
@@ -698,7 +769,7 @@ strong {
 }
 .modal-account__close-btn .icon-button {
   font-size: 1.6rem;
-  color: var(--color-black);
+  color: var(--color-default);
 }
 .modal-account .modal-title {
   font-size: 2.2rem;
@@ -762,7 +833,7 @@ strong {
   padding: 0 6px;
   translate: 0 -50%;
   background: var(--modal-bgc);
-  color: #666;
+  color: var(--color-gray);
   transition: translate, color, text-shadow;
   transition-duration: 0.5s;
   pointer-events: none;
@@ -783,7 +854,6 @@ strong {
   text-decoration: none;
   color: var(--color-highlight);
   font-weight: 600;
-
 }
 
 .modal-account .modal-footer {
@@ -793,16 +863,15 @@ strong {
   width: 100%;
   height: 40px;
   cursor: pointer;
-  background-color: var(--highlight-btn);
+  background-color: var(--modal-btn);
   border-radius: 12px;
   color: #fff;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: ease opacity 0.4s;
+  transition: ease all 0.4s;
 }
 .account-modal-btn:hover {
-  background-color: var(--highlight-btn);
-  opacity: 0.9;
+  background-color: var(--hover-bgc);
 }

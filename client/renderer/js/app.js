@@ -11,6 +11,7 @@ import { db } from "./db.js";
 import { getAccountInLocalStorage, logout } from "./account.js";
 import { loginModal, notebookModalEditor, registerModal, updateAccountInfoModal, updatePasswordModal } from "./modal.js";
 import { spinner } from "./spinner.js";
+import { toggleTheme } from "./theme.js";
 
 const accountActionButton = $("#account-action");
 const accountActionText = accountActionButton.querySelector(".account-action__title");
@@ -72,8 +73,18 @@ currentDateElement.textContent = new Date().toDateString().replace(" ", ", ");
 //Add setting button event listener
 const settingButtonElement = $("#settings-btn");
 const settingBodyElement = $("#settings-body");
-settingButtonElement.addEventListener("click", () => {
+const toggleSettings = () => {
     settingBodyElement.classList.toggle("settings-body--active");
+}
+settingButtonElement.addEventListener("click", () => {
+    toggleSettings();
+});
+document.addEventListener("click", (event) => {
+    if (!settingBodyElement.contains(event.target) && !settingButtonElement.contains(event.target)) {
+        if (settingBodyElement.classList.contains("settings-body--active")) {
+            toggleSettings();
+        }
+    }
 });
 if (getAccountInLocalStorage()) {
     settingBodyElement.innerHTML = `
@@ -82,6 +93,8 @@ if (getAccountInLocalStorage()) {
         <li class="settings-list__item" id="settings__change-info" account-settings>Change Infomation</li>
         <li class="settings-list__item" id="settings__change-password" account-settings>Change Password</li>
         <li class="settings-list__item" id="settings__log-out" account-settings>Log out</li>
+        <li class="settings-list__header">Theme</li>
+        <li class="settings-list__item" id="theme-toggle">Switch theme</li>
     </ul>
     `
     const changeInfoButton = $("#settings__change-info");
@@ -91,17 +104,22 @@ if (getAccountInLocalStorage()) {
         const account = await db.get.account();
         spinnerElement.stop();
         updateAccountInfoModal(account.username, account.email);
-        settingBodyElement.classList.toggle("settings-body--active");
+        toggleSettings();
     });
     const changePasswordButton = $("#settings__change-password");
     changePasswordButton.addEventListener("click", () => {
         updatePasswordModal();
-        settingBodyElement.classList.toggle("settings-body--active");
+        toggleSettings();
     });
     const logOutButton = $("#settings__log-out");
     logOutButton.addEventListener("click", () => {
         logout();
-        settingBodyElement.classList.toggle("settings-body--active");
+        toggleSettings();
+    });
+    const themeToggle = $("#theme-toggle");
+    themeToggle.addEventListener("click", () => {
+        console.log("toggle theme");
+        toggleTheme();
     });
 } else {
     settingBodyElement.innerHTML = `
@@ -109,17 +127,25 @@ if (getAccountInLocalStorage()) {
         <li class="settings-list__header" account-settings>Account Setting</li>
         <li class="settings-list__item" id="settings__log-in" account-settings>Log in</li>
         <li class="settings-list__item" id="settings__register" account-settings>Register</li>
+        <li class="settings-list__header">Theme</li>
+        <li class="settings-list__item" id="theme-toggle">Switch theme</li>
     </ul>
     `
     const logInButton = $("#settings__log-in");
     logInButton.addEventListener("click", () => {
         loginModal();
-        settingBodyElement.classList.toggle("settings-body--active");
+        toggleSettings();
     });
     const registerButton = $("#settings__register");
     registerButton.addEventListener("click", () => {
         registerModal();
-        settingBodyElement.classList.toggle("settings-body--active");
+        toggleSettings();
+    });
+    
+    const themeToggle = $("#theme-toggle");
+    themeToggle.addEventListener("click", () => {
+        toggleTheme();
+        toggleSettings();
     });
 }
 // CRUD operations, save to localStorage first, handle server later
