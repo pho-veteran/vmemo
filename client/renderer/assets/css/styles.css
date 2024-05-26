@@ -456,7 +456,7 @@ strong {
 }
 /* Header */
 .header {
-  background-color: var(--body-color);
+  background-color: var(--navbar-bgc);
   position: sticky;
   top: 0;
   padding: 24px 0;
