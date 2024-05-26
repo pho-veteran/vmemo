@@ -7,6 +7,7 @@
   --color-default-light: #000000da;
   --navbar-bgc-light: #fff2ed;
   --color-highlight-light: #371707;
+  --header-bgc-light: #ffffff;
   --highlight-bgc-light: #FFDDCC;
   --highlight-bgc-lighter-light: #FFDDCC;
   --highlight-btn-light: #69473A;
@@ -25,6 +26,7 @@
   --navbar-bgc-dark: #201A18;
   --body-color-dark: #201a18ab;
   --color-highlight-dark: #FFDDCC;
+  --header-bgc-dark: #201A18;
   --highlight-bgc-dark: #783100;
   --highlight-bgc-lighter-dark: #5C4032;
   --highlight-btn-dark: #FFDDCC;
@@ -50,6 +52,7 @@
   --color-default: var(--color-default-light);
   --navbar-bgc: var(--navbar-bgc-light);
   --color-highlight: var(--color-highlight-light);
+  --header-bgc: var(--header-bgc-light);
   --highlight-bgc: var(--highlight-bgc-light);
   --highlight-bgc-lighter: var(--highlight-bgc-lighter-light);
   --highlight-btn: var(--highlight-btn-light);
@@ -72,6 +75,7 @@
   --color-default: var(--color-default-dark);
   --navbar-bgc: var(--navbar-bgc-dark);
   --color-highlight: var(--color-highlight-dark);
+  --header-bgc: var(--header-bgc-dark);
   --highlight-bgc: var(--highlight-bgc-dark);
   --highlight-bgc-lighter: var(--highlight-bgc-lighter-dark);
   --highlight-btn: var(--highlight-btn-dark);
@@ -456,7 +460,7 @@ strong {
 }
 /* Header */
 .header {
-  background-color: var(--navbar-bgc);
+  background-color: var(--header-bgc);
   position: sticky;
   top: 0;
   padding: 24px 0;
