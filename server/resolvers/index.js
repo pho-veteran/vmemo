@@ -1,4 +1,5 @@
 import { accountModel, noteModel, notebookModel } from "../models/index.js"
+import { hashPassword, checkPassword } from "../serverUtils.js";
 
 export const resolvers = {
     Query: {
@@ -9,9 +10,14 @@ export const resolvers = {
         checkAccount: async (parent, args) => {
             const account = await accountModel.findOne({
                 username: args.username,
-                password: args.password
             });
-            return account;
+            if (account) {
+                const passwordMatch = await checkPassword(args.password, account.password);
+                if (passwordMatch) {
+                    return account;
+                }
+            }
+            return null;
         },
         checkUsername: async (parent, args) => {
             const account = await accountModel.findOne({
@@ -59,17 +65,18 @@ export const resolvers = {
     },
     Mutation: {
         createAccount: async (parent, args) => {
-            const newAccount = new accountModel({
-                username: args.username,
-                password: args.password,
-                email: args.email,
-            });
             const checkAccount = await accountModel.findOne({
                 username: args.username
             });
             if (checkAccount) {
                 return null;
             } else {
+                const hashedPassword = await hashPassword(args.password);
+                const newAccount = new accountModel({
+                    username: args.username,
+                    password: hashedPassword,
+                    email: args.email,
+                });
                 await newAccount.save();
                 return newAccount;
             }
@@ -90,14 +97,13 @@ export const resolvers = {
             }
         },
         updateAccountPassword: async (parent, args) => {
-            const checkAccount = await accountModel.findOne({
-                _id: args.accountID,
-                password: args.oldPassword
-            });
-            if (checkAccount) {
+            const account = await accountModel.findById(args.accountID);
+            const passwordMatch = await checkPassword(args.oldPassword, account.password);
+            if (passwordMatch) {
+                const hashedPassword = await hashPassword(args.newPassword);
                 await accountModel.findByIdAndUpdate(
                     args.accountID,
-                    { password: args.newPassword },
+                    { password: hashedPassword },
                     { new: true }
                 );
                 return true;
