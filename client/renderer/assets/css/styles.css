@@ -21,6 +21,7 @@
   --box-shadow-1-light: #0000000c;
   --box-shadow-2-light: #0000000b;
   --setting-bgc-light: #ffffff;
+  --add-note-cross-light: #69473A;
 
   /* Dark Theme */
   --navbar-bgc-dark: #201A18;
@@ -40,6 +41,7 @@
   --box-shadow-1-dark: #0000000c;
   --box-shadow-2-dark: #0000000b;
   --setting-bgc-dark: #201A18;
+  --add-note-cross-dark: #ffffff;
 
   /* Common */
   --content-padding: 48px;
@@ -67,6 +69,7 @@
   --box-shadow-2: var(--box-shadow-2-light);
   --hover-bgc: var(--hover-bgc-light);
   --setting-bgc: var(--setting-bgc-light);
+  --add-note-cross: var(--add-note-cross-light);
 }
 [data-theme="dark"] {
   color-scheme: dark;
@@ -90,6 +93,7 @@
   --box-shadow-2: var(--box-shadow-2-dark);
   --hover-bgc: var(--hover-bgc-dark);
   --setting-bgc: var(--setting-bgc-dark);
+  --add-note-cross: var(--add-note-cross-dark);
 }
 html {
   font-size: 62.5%;
@@ -421,13 +425,13 @@ strong {
   background-color: var(--note-hover-bgc);
 }
 .account-action .account-icon {
-  color: var(--color-highlight);
+  color: var(--color-default);
 }
 .account-action__title {
   font-weight: 500;
   justify-self: center;
   line-height: 1.8;
-  color: var(--color-highlight);
+  color: var(--color-default);
 }
 /* Main content */
 .container {
@@ -568,7 +572,7 @@ strong {
 }
 .add-note__icon {
   font-size: 5rem;
-  color: var(--highlight-btn);
+  color: var(--add-note-cross);
 }
 .add-note-item {
   display: flex;
@@ -625,8 +629,11 @@ strong {
   visibility: hidden;
 }
 .note-date {
-  color: var(--color-highlight);
+  color: var(--color-default);
   font-size: 1.4rem;
+}
+.note-edit-btn {
+  color: var(--color-default)
 }
 
 /* Modal */
